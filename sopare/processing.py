@@ -19,7 +19,7 @@ under the License.
 
 import logging
 import audioop
-import prepare
+import sopare.prepare
 import time
 import io
 
@@ -36,7 +36,7 @@ class processor():
         self.timer = 0
         self.silence_timer = 0
         self.silence_buffer = [ ]
-        self.prepare = prepare.preparing(self.cfg)
+        self.prepare = sopare.prepare.preparing(self.cfg)
         self.logger = self.cfg.getlogger().getlog()
         self.logger = logging.getLogger(__name__)
 
