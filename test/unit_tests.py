@@ -17,8 +17,8 @@ License for the specific language governing permissions and limitations
 under the License.
 """
 
-import test.test_analyze
-import test.test_filter
+from . import test_analyze
+from . import test_filter
 
 class unit_tests():
 
