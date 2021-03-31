@@ -35,7 +35,13 @@ class numpyjsonencoder(json.JSONEncoder):
                     raise Exception("numpyjsonencoder err: C_CONTIGUOUS not present in object!")
             data_base64 = base64.b64encode(obj_data)
             return dict(__ndarray__= data_base64, dtype = str(obj.dtype), shape = obj.shape)
-        return json.JSONEncoder(self, obj)
+        if isinstance(obj,bytes):
+            #print("Warning: encoding byte to string.")
+            return obj.decode('utf-8')
+        if isinstance(obj, numpy.int64):
+            #print("Warning: encoding numpy int64 to int.")
+            return int(obj)
+        return json.JSONEncoder.default(self, obj)
 
 def numpyjsonhook(obj):
     if isinstance(obj, dict) and '__ndarray__' in obj:
